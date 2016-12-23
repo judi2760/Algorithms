@@ -1,0 +1,55 @@
+You are given two linked lists representing two non-negative numbers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.
+
+Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
+Output: 7 -> 0 -> 8
+
+link: https://leetcode.com/problems/add-two-numbers
+
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+ 
+/**
+ * @param {ListNode} l1
+ * @param {ListNode} l2
+ * @return {ListNode}
+ */
+
+var addTwoNumbers = function(l1, l2) {
+	var ad = 0;
+	var head = null;
+	var tail = null;
+
+	while(l1 != null || l2 != null){
+			var val1 = l1!=null?l1.val:0;
+			var val2 = l2!=null?l2.val:0;
+			var sum = val1 + val2 + ad;
+			var digit = sum%10;
+			ad = parseInt(sum/10);
+			
+			if(head == null){
+				head = new ListNode(digit);
+				tail = head;
+			} else{
+				var node = new ListNode(digit);
+				tail.next = node;
+				tail = tail.next;
+			}
+			
+			if(l1 != null) l1 = l1.next;
+			if(l2 != null) l2 = l2.next;
+		}
+		
+	if(ad > 0){
+			var node = new ListNode(ad);
+			tail.next = node;
+			tail = tail.next;
+	}
+		
+	return head;
+};
