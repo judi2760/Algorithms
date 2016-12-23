@@ -1,0 +1,52 @@
+For example, given array S = [-1, 0, 1, 2, -1, -4],
+
+A solution set is:
+[
+  [-1, 0, 1],
+  [-1, -1, 2]
+]
+
+Note: The solution set must not contain duplicate triplets.
+
+var threeSumZeroNoTripletsDuplicates = function(nums) {
+	nums.sort(function(a,b){ 
+		if(a==b) return 0; 
+		return a<b?-1:1;
+	});
+
+    var index = -1;
+	var triplets=[];
+	var seen = {};
+	var n = nums.length;
+	for(var i = 0; i<n - 1; ){
+		for(var j=i+1; j<n -1;){
+			var numj= nums[j];
+			var numi=nums[i];
+			index = binarySearch(nums, j+1 ,n, (numj+ numi)*(-1));	
+			if(index != -1){
+			    var c3 = nums[index];
+			    triplets.push( [numi, numj, c3] );			    			
+			}					
+			while(j<n && nums[j] == nums[++j]);
+		}
+		while(i<n && nums[i] == nums[++i]);
+	}
+	return triplets;
+};
+
+function binarySearch(nums, lo, hi, target){
+	var index = -1;
+	while(lo<=hi){
+		var mid = parseInt(lo + (hi-lo)/2);
+ 		if(target==nums[mid]){
+			index = mid;
+			break;
+		}
+		if(target<nums[mid]){
+			hi = mid-1;	
+		}else{	
+			lo = mid+1;			
+		}
+	}	
+	return index;
+}
