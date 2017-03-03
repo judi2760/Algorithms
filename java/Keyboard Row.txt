@@ -1,0 +1,18 @@
+Given a List of words, return the words that can be typed using letters of alphabet on only one row's of American keyboard
+
+Input: ["Hello", "Alaska", "Dad", "Peace"]
+Output: ["Alaska", "Dad"]
+
+public class Solution {
+    public String[] findWords(String[] words) {
+       List<String> list = new ArrayList<String>();
+		for(String word : words){
+			String upper = word.toUpperCase(); 
+			if(upper.matches("[QWERTYUIOP]*") || upper.matches("[ASDFGHJKL]*") || upper.matches("[ZXCVBNM]*")){
+				list.add(word);
+			}
+		}
+		
+		return list.toArray(new String[list.size()]);
+    }
+}
