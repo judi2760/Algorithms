@@ -1,0 +1,17 @@
+﻿https://leetcode.com/problems/reverse-string/?tab=Description
+
+public class Solution {
+    public String reverseString(String s) {
+       int n = s.length();
+		int i = 0, j = n;
+		char [] reverse = s.toCharArray();
+		
+		while(i<j){
+			char tmp = reverse[i];
+			reverse[i++] = reverse[--j];
+			reverse[j] = tmp;
+		}
+		
+        return new String(reverse);
+    }
+}
