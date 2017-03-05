@@ -1,0 +1,24 @@
+﻿https://leetcode.com/problems/next-greater-element-i/?tab=Description
+
+public class Solution {
+    public int[] nextGreaterElement(int[] findNums, int[] nums) {
+        int m = findNums.length;
+		int result[] = new int[m];
+
+		Deque<Integer> stack = new ArrayDeque<Integer>();
+		Map<Integer, Integer> maxValues = new HashMap<>();
+
+		for (int num : nums) {
+			while (!stack.isEmpty() && num > stack.peek()) {
+				maxValues.put(stack.pop(), num);
+			}
+			stack.push(num);
+		}
+
+		for (int i = 0; i < m; i++) {
+			result[i] = maxValues.getOrDefault(findNums[i], -1);
+		}
+
+		return result;
+    }
+}
