@@ -1,0 +1,132 @@
+﻿https://leetcode.com/problems/island-perimeter/?tab=Description
+
+First Solution (LONG version, checking all borders )
+
+public class Solution {
+   public int islandPerimeter(int[][] grid) {
+		int perimeter = 0;
+		int n = grid.length;
+		int m = grid[0].length;
+
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				int val = grid[i][j];
+				
+				if(val == 0){
+					continue;
+				}
+				//Top border
+				if(val == 1 && i ==0){
+					perimeter++;
+					//top right corner
+					if(j == 0){
+						perimeter ++;
+					}
+					//left right corner
+					if(j == m -1 ){
+						perimeter ++;	
+					}
+					//left neighbour
+					if (j - 1 >= 0 && grid[i][j - 1] == 0) {
+						perimeter++;
+					}
+					//right neighbour
+					if (j + 1 < m && grid[i][j + 1] == 0) {
+						perimeter++;
+					}
+					//just one row?
+					if(i + 1 == n){
+						perimeter++;
+					}
+					//down neighbour
+					if (i + 1 < n && grid[i+1][j] == 0) {
+						perimeter++;
+					}
+					
+				} else if (val == 1 && i == n - 1){
+					//Bottom border
+					perimeter++;
+					
+					//down right corner
+					if(j == 0){
+						perimeter ++;
+					}
+					//down left corner
+					if(j == m -1 ){
+						perimeter ++;	
+					}
+					//left neighbour
+					if (j - 1 >= 0 && grid[i][j - 1] == 0) {
+						perimeter++;
+					}
+					//right neighbour
+					if (j + 1 < m && grid[i][j + 1] == 0) {
+						perimeter++;
+					}
+					//top neighbour
+					if (grid[i - 1][j] == 0) {
+						perimeter++;
+					}
+					
+				} else if (val == 1) {
+					//Internal case
+					//left border
+					if(j == 0){
+						perimeter ++;
+					}
+					//right border
+					if(j == m -1 ){
+						perimeter ++;	
+					}
+					//left neighbour
+					if (j - 1 >= 0 && grid[i][j - 1] == 0) {
+						perimeter++;
+					}
+					//right neighbour
+					if (j + 1 < m && grid[i][j + 1] == 0) {
+						perimeter++;
+					}
+					//up neighbour
+					if(grid[i-1][j] == 0){
+						perimeter ++;
+					}
+					//down neighbour
+					if(grid[i+1][j] == 0){
+						perimeter ++;
+					}
+				}
+				
+			}
+		}
+
+		return perimeter;
+	}
+}
+
+SECOND SOLUTION: After analysis, you will notice the following:
+Scanning from right to left and top to bottom:
+	* if there is a block, add 4 to your perimeter.
+		* if the block has a neighbour to its right, substract 2 to your perimeter.
+		* if the block has a neighbour down it, substract 2 to your perimeter.
+		
+public class Solution {
+ 
+	public int islandPerimeter(int[][] grid) {
+	
+		int perimeter = 0;
+		int n = grid.length;
+		int m = grid[0].length;
+		
+		for(int i = 0; i<n; i++){			
+			for(int j = 0; j < m; j++){
+				int value = grid[i][j];				
+				if(value == 1){
+						perimeter +=4;
+						if(i+1<n && grid[i+1][j]==1) perimeter -=2;
+						if(j+1<m && grid[i][j+1]==1) perimeter -=2;
+				}				
+			}					
+		}
+		return perimeter;
+	}
+}
