@@ -1,2 +1,2 @@
 # Algorithms
-Available personal solutions, please feel free to modify them.
+Personal solutions to https://leetcode.com problems (based on java and javascript).
