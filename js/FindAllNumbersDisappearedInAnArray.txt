@@ -1,0 +1,20 @@
+https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/#/description
+
+var findDisappearedNumbers = function(nums) {
+      var result = [];
+      var n = nums.length;
+      
+       for(var j = 0; j < n ; j++){
+        	var value = Math.abs(nums[j]) - 1;
+        	if(nums[value] >= 0){
+        		nums[value]= -nums[value] 
+        	}
+        }
+        
+        for(var i = 0; i < n; i++){
+        	if(nums[i]>=0){
+        		result.push(i+1);
+        	}
+        }
+        return result;
+};
