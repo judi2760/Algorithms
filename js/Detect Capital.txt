@@ -15,6 +15,6 @@ var detectCapitalUse = function(word) {
         return word.charAt(0)===word.charAt(0).toUpperCase();
     }
     
-    return counter === 0? true: counter===n;
+    return counter === 0 || counter===n;
     
 };
