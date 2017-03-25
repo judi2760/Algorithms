@@ -1,0 +1,20 @@
+https://leetcode.com/problems/detect-capital/#/description
+
+var detectCapitalUse = function(word) {
+    
+    var counter = 0;
+    var n = word.length;
+    
+    for(var i = 0; i < n ; i++){
+        if(word.charAt(i)===word.charAt(i).toUpperCase()){
+            counter++;
+        }
+    }
+    
+    if(counter == 1){
+        return word.charAt(0)===word.charAt(0).toUpperCase();
+    }
+    
+    return counter === 0? true: counter===n;
+    
+};
