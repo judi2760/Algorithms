@@ -1,0 +1,34 @@
+﻿//https://leetcode.com/problems/find-the-difference/#/description
+
+
+public class FindDifference {	
+	
+	public static void main(String[] args) {
+		System.out.println(findTheDifference("zabcd", "zabcdx"));
+		
+	}	
+	
+	public static char findTheDifference(String s, String t) {
+		char[] firstArray = s.toCharArray();
+		char[] secondArray = t.toCharArray();
+		int [] cad = new int[255];
+		int m = firstArray.length;
+				
+		char value = ' ';
+		for(int i = 0; i <m; i++){
+			cad[firstArray[i]] = cad[firstArray[i]] + 1;		
+		}
+		
+		for(int i = 0; i <m+1; i++){
+			int val = cad[secondArray[i]];
+			if(val == 0){
+				value = secondArray[i];
+				break;
+			}else{
+				cad[secondArray[i]] = val - 1;
+			}
+		}
+		
+		return value;
+	}
+}
