@@ -1,0 +1,17 @@
+https://leetcode.com/problems/reverse-words-in-a-string-iii/#/description
+
+
+var reverseWords = function(s) {
+    let array = s.split(" ");
+    let joinArray = [];
+    array.forEach( val=> {
+        let n = val.length;
+        let reverse = "";
+        for(let i = n-1; i>=0; i--){
+            reverse += val.charAt(i);
+        }
+        joinArray.push(reverse);
+        
+    });
+    return joinArray.join(" ");
+};
