@@ -1,0 +1,13 @@
+https://leetcode.com/problems/construct-the-rectangle/#/description
+
+var constructRectangle = function(area) {
+    let w = parseInt(Math.sqrt(area));
+    
+    while( area % w !== 0){
+            w--;
+    }
+    
+    return [area/w, w];
+    
+    
+};

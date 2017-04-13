@@ -1,0 +1,18 @@
+https://leetcode.com/problems/construct-the-rectangle/#/description
+
+public class Solution {
+    public int[] constructRectangle(int area) {
+        int [] result = new int [2];
+        
+        int w = (int)Math.sqrt(area);
+        
+        while(area%w!=0){
+            w--;
+        }
+        
+        int h = area / w;
+        result[0] = h;
+        result[1] = w;
+        return result;
+    }
+}
