@@ -1,0 +1,35 @@
+﻿https://leetcode.com/problems/minimum-absolute-difference-in-bst/#/description
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    TreeNode prev = null;
+    int diff=Integer.MAX_VALUE;
+    
+    public int getMinimumDifference(TreeNode root) {
+         preOrder(root);
+         return diff;
+    }
+    
+    public void preOrder(TreeNode root){
+       if(root == null){
+           return;
+       }
+       
+       preOrder(root.left);
+       
+       if(prev != null){
+           diff=Math.min(diff, Math.abs(root.val - prev.val));
+       }
+       prev=root;
+       preOrder(root.right);
+        
+    }
+}
