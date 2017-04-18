@@ -1,0 +1,30 @@
+﻿//https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/#/description
+
+public class Solution {
+    public int[] twoSum(int[] numbers, int target) {
+        int[] indices = new int[2];
+        
+        int n = numbers.length;
+        int i = 0; 
+        int j = n-1;
+        
+        while(i<j) {
+            int leftValue=numbers[i];
+            int rightValue=numbers[j];
+            
+            int sum = leftValue + rightValue;
+            if(sum == target){
+                indices[0] = i+1;
+                indices[1] = j+1;
+                break;
+            } else if(sum>target){
+                j--;
+            } else{
+                i++;
+            }
+        }
+        
+        return indices;
+        
+    }
+}
