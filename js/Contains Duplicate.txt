@@ -1,0 +1,17 @@
+https://leetcode.com/problems/contains-duplicate/#/description
+
+/**
+ * @param {number[]} nums
+ * @return {boolean}
+ */
+var containsDuplicate = function(nums) {
+    let check = new Set();
+    for(let x of nums){
+        if(check.has(x)){
+            return true;
+        }
+        check.add(x);
+    }
+    return false;
+    
+};
