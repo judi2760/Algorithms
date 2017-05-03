@@ -1,0 +1,13 @@
+//https://leetcode.com/problems/delete-node-in-a-linked-list/#/description
+
+var deleteNode = function(node) {
+    if(node){
+        let next = node.next;
+        if(next){
+            node.val = next.val;    
+            node.next = next.next;    
+        } else{
+            node.val = null;
+        }
+    }
+};

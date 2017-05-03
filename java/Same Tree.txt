@@ -1,0 +1,43 @@
+//https://leetcode.com/problems/same-tree/#/description
+
+public class Solution {
+    public boolean isSameTree(TreeNode p, TreeNode q) {
+        if(p == null && q == null) return true;
+        return ( p!=null && q !=null && p.val == q.val)?( isSameTree(p.left,q.left) && isSameTree(p.right,q.right) ) : false;
+    }
+
+	public boolean isSameTreeNoRecursive(TreeNode p, TreeNode q) {
+		Queue<TreeNode> que1 = new LinkedList<TreeNode>();
+		Queue<TreeNode> que2 = new LinkedList<TreeNode>();
+		que1.offer(p);
+		que2.offer(q);
+		boolean equals = true;
+
+		while (!que1.isEmpty() && !que2.isEmpty() && equals) {
+			TreeNode value1 = que1.poll();
+			TreeNode value2 = que2.poll();
+			if (value1 == null && value2 == null) {
+				continue;
+			}
+
+			if (value1 != null && value2 != null) {
+				if (value1.val == value2.val) {
+					que1.offer(value1.left);
+					que1.offer(value1.right);
+
+					que2.offer(value2.left);
+					que2.offer(value2.right);
+
+				} else {
+					equals = false;
+				}
+			} else {
+				equals = false;
+			}
+		}
+
+		return (que1.isEmpty() && que2.isEmpty() && equals);
+	}
+
+}
+
