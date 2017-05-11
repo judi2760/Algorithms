@@ -1,0 +1,23 @@
+https://leetcode.com/problems/palindrome-number/#/description
+
+public class Solution {
+    public boolean isPalindrome(int x) {
+        if(x < 0 ){
+	        return false;
+	    }
+        int result = 0;
+        int newResult = 0;
+        int copy = x;
+        while(copy>0){
+            int tail = copy%10;
+            newResult = newResult*10 + tail;
+            if( (newResult-tail)/10 != result){
+                return false;
+            }
+            result = newResult;
+            copy /= 10;
+        }
+        
+        return newResult == x;
+    }
+}
