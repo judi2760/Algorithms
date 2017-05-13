@@ -1,0 +1,38 @@
+// https://leetcode.com/problems/valid-palindrome/#/description
+
+public class Solution {
+    public boolean isPalindrome(String s) {
+        if(s==null){
+            return false;
+        }
+        
+        if(s.isEmpty()){
+            return true;
+        }
+        int n = s.length();
+        for(int i=0, j = n-1; j>i;){
+            char c1 = s.charAt(i);
+            char c2 = s.charAt(j);
+            
+            if (Character.isLetterOrDigit(c1) && Character.isLetterOrDigit(c2)) {
+                if(Character.toUpperCase(c1) != Character.toUpperCase(c2)){
+                    return false;
+                }
+                i++;
+                j--;
+                continue;
+            }
+            
+            if(!Character.isLetterOrDigit(c1)){
+                i++;
+            }
+            
+            if(!Character.isLetterOrDigit(c2)){
+                j--;
+            }
+            
+        }
+        
+        return true;
+    }
+}
