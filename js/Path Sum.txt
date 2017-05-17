@@ -1,0 +1,26 @@
+//https://leetcode.com/problems/path-sum/#/description
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {number} sum
+ * @return {boolean}
+ */
+var hasPathSum = function(root, sum) {
+    return existPath(root, 0, sum);
+};
+
+function existPath(node, sum, objective){
+    if(!node){
+        return false;
+    }
+    
+    if(node.left === null && node.right===null && node.val + sum === objective){ return true;}
+    return existPath(node.left, sum + node.val, objective) || existPath(node.right, sum + node.val, objective);
+}
