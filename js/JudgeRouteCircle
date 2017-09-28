@@ -1,0 +1,21 @@
+//https://leetcode.com/problems/judge-route-circle/description/
+/**
+ * @param {string} moves
+ * @return {boolean}
+ */
+var judgeCircle = function(moves) {
+    let r_count=0;
+    let u_count=0;
+    let n = moves.length;
+    
+    for(let i = 0; i < n; i++){
+        let c = moves.charAt(i);
+         switch(c){
+             case 'U' : u_count++; break;
+             case 'D' : u_count--; break;
+             case 'L' : r_count++; break;
+             case 'R' : r_count--; break;
+        }
+    }
+    return (u_count === 0  && r_count===0); 
+};
